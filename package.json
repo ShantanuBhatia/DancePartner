@@ -1,0 +1,28 @@
+{
+  "name": "dancepartner",
+  "version": "1.0.0",
+  "description": "Node.js based server for NYUAD Attitude's Dance Partner application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShantanuBhatia/DancePartner.git"
+  },
+  "keywords": [
+    "dance",
+    "youtube",
+    "node",
+    "kpop"
+  ],
+  "author": "Shantanu Bhatia, Aayusha Shrestha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShantanuBhatia/DancePartner/issues"
+  },
+  "homepage": "https://github.com/ShantanuBhatia/DancePartner#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
