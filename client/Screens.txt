@@ -1,0 +1,22 @@
+Screens
+
+Home Screen
+    List of all songs that have been annotated, with a Go To Song button next to it
+    Add New Song button
+
+Add New Song Screen
+    Text field for pasting in a youtube link
+    Text field for giving the song a name
+    Button for submitting
+
+Dance Practice Screen
+    The video at the top (Component)
+    A "Mark here!" button
+    A list (COMPONENT) of the dance-points which are ...
+                                            ...to the right of the video (desktop)
+                                            ...under the video (mobile)
+    Each dance-point (COMPONENT) consists of a draggable hamburger for rearranging, a play button, a text field that can be clicked to be renamed, and a delete button
+    
+
+
+
