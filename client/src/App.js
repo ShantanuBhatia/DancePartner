@@ -15,12 +15,33 @@ class App extends Component {
     super(props);
     this.state = {
       songtitle: "Yes or Yes",
-      song_id: "Nl4BJ2TDmWE"
+      song_id: "Nl4BJ2TDmWE",
+      data: "The server failed to connect",
     };
   }
+
+  componentDidMount(){
+    this.callBackendAPI()
+      .then(res => this.setState({ data: res.express }))
+      .catch(err => console.log(err));
+  }
+
+  callBackendAPI = async () => {
+    const response = await fetch('/express_backend');
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message) 
+    }
+    return body;
+  };
+
   render() {
     return (
+      <div>
         <h1>Pick a song to begin</h1>
+        <p>{this.state.data}</p>
+      </div>
     );
   }
 }

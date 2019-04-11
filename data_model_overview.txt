@@ -1,0 +1,3 @@
+A videos table: a title, a videoID, and a "short". VideoID is primary key
+
+A markers table: an ID, a videoID, a timestamp and a title

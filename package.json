@@ -1,0 +1,23 @@
+{
+  "name": "dancepartner",
+  "version": "1.0.0",
+  "description": "Simple web interface for quickly jumping to song sections. Makes group dance practice easier!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShantanuBhatia/DancePartner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShantanuBhatia/DancePartner/issues"
+  },
+  "homepage": "https://github.com/ShantanuBhatia/DancePartner#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
