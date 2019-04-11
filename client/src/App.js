@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  Route,
+  NavLink,
+  BrowserRouter
+} from "react-router-dom";
+
 import './App.css';
 import SongTitleView from './components/SongTitleView.jsx';
 import VideoPlayerView from './components/VideoPlayerView.jsx';
@@ -15,11 +20,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <SongTitleView title={this.state.songtitle}/>
-        <VideoPlayerView title={this.state.songtitle} video_id={this.state.song_id} vid_width={640} vid_height={360} />
-        <SongSelectionScreen />
-      </div>
+        <h1>Pick a song to begin</h1>
     );
   }
 }

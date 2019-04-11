@@ -37,12 +37,15 @@ class VideoPlayerView extends Component {
             
             this.danceVid = new window['YT'].Player('dancesong');
             this.setState({danceVid: this.danceVid})
+            console.log("MOUNTED!");
         };
-
     }
 
 
     handleSubmit(e) {
+        console.log("State vid: " + this.state.danceVid);
+
+
         e.preventDefault();
         // if (!this.state.text.length) {
         //     return;
@@ -56,6 +59,17 @@ class VideoPlayerView extends Component {
         this.setState(state => ({
             items: state.items.concat(newItem),
         }));
+    }
+
+    setCorrectVid(){
+        window['onYouTubeIframeAPIReady'] = (e) => {
+            this.YT = window['YT'];
+            this.reframed = false;
+            
+            this.danceVid = new window['YT'].Player('dancesong');
+            this.setState({danceVid: this.danceVid})
+            console.log("set_function_mounted!!");
+        };
     }
 
     youtube_url = (video_id) => {return "https://www.youtube.com/embed/" + video_id + "?enablejsapi=1"};
