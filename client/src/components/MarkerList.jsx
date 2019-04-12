@@ -6,7 +6,7 @@ class MarkerList extends Component {
         return (
             <ul className="list-group">
                 {this.props.items.map(item => (
-                <DanceMarker key={item.markerID} timestamp={item.timestamp} vidID={item.video_id} vidReference={this.props.vidReference} markerID={item.markerID} label={item.title}/>
+                <DanceMarker key={item.markerID} timestamp={item.timestamp} vidID={item.videoID} vidReference={this.props.vidReference} markerID={item.markerID} label={item.title}/>
                 ))}
             </ul>
         );

@@ -35,12 +35,12 @@ app.post('/pushmarker', (req, res) => {
     // let dbcommand = `INSERT INTO TABLE markers VALUES ("${req.body.id}", "${req.body.video_id}", ${req.body.timestamp}, "Marker at ${req.body.timestamp}");`;
     // console.log(dbcommand);
     console.log(req.body);
-    db.run(`INSERT INTO MARKERS VALUES (?, ?, ?, ?)`, [req.body.id, req.body.video_id, req.body.timestamp, `Marker at ${req.body.timestamp}`], (err)=>{
+    db.run(`INSERT INTO MARKERS VALUES (?, ?, ?, ?)`, [req.body.markerID, req.body.videoID, req.body.timestamp, `Marker at ${req.body.timestamp}`], (err)=>{
         if (err){
             console.error(err);
         }
         else{
-            console.log(`Inserted a row into song ${req.body.video_id}`);
+            console.log(`Inserted a row into song ${req.body.videoID}`);
         }
     });
 });

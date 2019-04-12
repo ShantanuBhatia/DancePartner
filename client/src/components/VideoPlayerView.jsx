@@ -83,7 +83,7 @@ class VideoPlayerView extends Component {
     refreshList(e) {
         e.preventDefault();
         console.log("A refresh was requested");
-        axios.get(`/song/${this.props.videoID}`)
+        axios.get(`/song/${this.props.video_id}`)
         .then((res)=>{
             const markers = res.data;
             console.log(markers);
