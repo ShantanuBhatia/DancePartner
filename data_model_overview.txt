@@ -1,3 +1,11 @@
 A videos table: a title, a videoID, and a "short". VideoID is primary key
 
 A markers table: an ID, a videoID, a timestamp and a title
+
+An "active" table: each video's id, and its current status (playing/paused)
+
+A markers table: an ID, a videoID, a timestamp and a title
+
+CREATE TABLE video(title text, videoID text PRIMARY KEY , short text)
+
+CREATE TABLE markers(markerID text PRIMARY KEY, videoID text, timestamp real, title text ,FOREIGN KEY(videoID) REFERENCES video(videoID));
