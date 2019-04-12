@@ -25,7 +25,7 @@ app.get('/express_backend', (req, res) => {
                 return_string+=row.title+", ";
             });
             console.log(return_string);
-            res.send({ express: return_string} );
+            res.send({ express: "Made by Shanty :)"} );
         }
     });
 });
@@ -34,6 +34,7 @@ app.post('/pushmarker', (req, res) => {
 	console.log("Got a POST request!");
     // let dbcommand = `INSERT INTO TABLE markers VALUES ("${req.body.id}", "${req.body.video_id}", ${req.body.timestamp}, "Marker at ${req.body.timestamp}");`;
     // console.log(dbcommand);
+    console.log(req.body);
     db.run(`INSERT INTO MARKERS VALUES (?, ?, ?, ?)`, [req.body.id, req.body.video_id, req.body.timestamp, `Marker at ${req.body.timestamp}`], (err)=>{
         if (err){
             console.error(err);
@@ -66,6 +67,32 @@ app.get("/song/:videoid", (req, res) => {
         }
         else {
             res.send(rows);
+        }
+    });
+});
+
+app.post('/remove/:markerid', (req, res)=>{
+    console.log("Got a remove request!");
+    db.run(`DELETE FROM markers WHERE markerid=?;`, [req.params.markerid], (err)=>{
+        if(err){
+            console.error(err);
+        }
+        else{
+            console.log(`DELETE FROM markers WHERE markerid=${req.params.markerid};`)
+            console.log("Successfully removed the marker");
+        }
+    });
+});
+
+app.get("/secret/verysecret/purge", (req, res) => {
+    console.log("Running a full purge");
+    db.run(`DELETE FROM markers`, [], (err)=>{
+        if(err){
+            console.error(err);
+        }
+        else{
+            console.log("Successfully removed ALL markers");
+            res.send("Everything is gone :)");
         }
     });
 });

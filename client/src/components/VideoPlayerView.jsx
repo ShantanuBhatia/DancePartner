@@ -47,6 +47,7 @@ class VideoPlayerView extends Component {
         axios.get(`/song/${this.props.video_id}`)
         .then((res)=>{
             const markers = res.data;
+            console.log("Got markers!");
             console.log(markers);
             this.setState({items: markers});
         })
@@ -64,8 +65,8 @@ class VideoPlayerView extends Component {
         // }
         const newItem = {
             timestamp: this.state.danceVid.getCurrentTime(),
-            id: "M" + Date.now(),
-            video_id: this.props.video_id,
+            markerID: "M" + Date.now(),
+            videoID: this.props.video_id,
             title: "Marker at "+this.state.danceVid.getCurrentTime(),
             // vidReference: this.state.danceVid
         };
@@ -80,10 +81,15 @@ class VideoPlayerView extends Component {
 
 
     refreshList(e) {
-        console.log("A refresh was requested");
-
-
         e.preventDefault();
+        console.log("A refresh was requested");
+        axios.get(`/song/${this.props.videoID}`)
+        .then((res)=>{
+            const markers = res.data;
+            console.log(markers);
+            this.setState({items: markers});
+        })
+        .catch((err)=>{console.error(err)})
     }
     setCorrectVid(){
             this.YT = window['YT'];
