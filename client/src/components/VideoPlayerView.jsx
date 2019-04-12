@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MarkerList from './MarkerList.jsx';
 import '../css/vidStyles.css';
+import axios from 'axios';
 class VideoPlayerView extends Component {
     constructor(props) {
         super(props);
@@ -21,6 +22,7 @@ class VideoPlayerView extends Component {
         
         this.handleSubmit = this.handleSubmit.bind(this);
         this.setCorrectVid = this.setCorrectVid.bind(this);
+        this.refreshList = this.refreshList.bind(this);
     }
 
 
@@ -33,19 +35,27 @@ class VideoPlayerView extends Component {
         // var firstScriptTag = document.getElementsByTagName('script')[0];
         // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        window['onYouTubeIframeAPIReady'] = (e) => {
-            this.YT = window['YT'];
-            this.reframed = false;
+        // window['onYouTubeIframeAPIReady'] = (e) => {
+        //     this.YT = window['YT'];
+        //     this.reframed = false;
             
-            this.danceVid = new window['YT'].Player(this.shortref());
-            this.setState({danceVid: this.danceVid})
-            console.log("MOUNTED!");
-        };
+        //     this.danceVid = new window['YT'].Player(this.shortref());
+        //     this.setState({danceVid: this.danceVid})
+        //     console.log("MOUNTED!");
+        // };
+
+        axios.get(`/song/${this.props.video_id}`)
+        .then((res)=>{
+            const markers = res.data;
+            console.log(markers);
+            this.setState({items: markers});
+        })
+        .catch((err)=>{console.error(err)})
     }
 
 
     handleSubmit(e) {
-        console.log("State vid: " + this.state.danceVid);
+        console.log(this.state.danceVid);
 
 
         e.preventDefault();
@@ -54,16 +64,27 @@ class VideoPlayerView extends Component {
         // }
         const newItem = {
             timestamp: this.state.danceVid.getCurrentTime(),
-            id: Date.now(),
+            id: "M" + Date.now(),
             video_id: this.props.video_id,
-            vidReference: this.state.danceVid
+            title: "Marker at "+this.state.danceVid.getCurrentTime(),
+            // vidReference: this.state.danceVid
         };
         console.log(newItem)
         this.setState(state => ({
             items: state.items.concat(newItem),
         }));
+        axios.post('/pushmarker', newItem)
+        .then((response) => {console.log(response)})
+        .catch((err)=>{console.error(err)})
     }
 
+
+    refreshList(e) {
+        console.log("A refresh was requested");
+
+
+        e.preventDefault();
+    }
     setCorrectVid(){
             this.YT = window['YT'];
             this.reframed = false;
@@ -103,10 +124,14 @@ class VideoPlayerView extends Component {
         <h3>Markers</h3>
         <div className="row marker-list">
             <div style={{width: "50vw"}}>
-                <MarkerList items={this.state.items} />
+                <MarkerList items={this.state.items} vidReference={this.state.danceVid}/>
             </div>
         </div>
-
+        <form onSubmit={this.refreshList}>
+          <button  type="submit" className="btn btn-primary">
+            Reload List
+          </button>
+        </form>
         </div>
         );
     }
