@@ -9,3 +9,6 @@ A markers table: an ID, a videoID, a timestamp and a title
 CREATE TABLE video(title text, videoID text PRIMARY KEY , short text)
 
 CREATE TABLE markers(markerID text PRIMARY KEY, videoID text, timestamp real, title text ,FOREIGN KEY(videoID) REFERENCES video(videoID));
+
+
+CREATE TABLE vidstatus(vidIndex INTEGER PRIMARY KEY, videoID text, status INTEGER, FOREIGN KEY(videoID) REFERENCES video(videoID));

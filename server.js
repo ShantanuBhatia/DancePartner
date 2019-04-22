@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 // create a GET route
 app.get('/express_backend', (req, res) => {
 	/*Get all the titles of songs in the database and write those to the express*/
-	let query= "SELECT title FROM video";
+	let query = "SELECT title FROM video";
 	let rows = db.all(query,[], (err,rows)=>{
         if (err){
             console.error(err);
